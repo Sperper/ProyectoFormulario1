@@ -3,7 +3,10 @@ package com.es.proyectoformulario.services.impl;
 import com.es.proyectoformulario.model.User;
 
 import java.util.ArrayList;
+import java.util.IllegalFormatCodePointException;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ServiceUser {
 
@@ -21,6 +24,25 @@ public class ServiceUser {
         this.logger = new ServiceLogger();
     }
 
+    public boolean altaUser(User usuario) {
+        // Longitud max de todos los campos 20
+        // NO pueden contener el simbolo :
+        // El idUser no está repetido
+
+        Pattern patVerificar = Pattern.compile("\\w{1,20}");
+        Matcher checkIdUser = patVerificar.matcher(usuario.getId());
+        Matcher checkUser = patVerificar.matcher(usuario.getName());
+        Matcher checkPass = patVerificar.matcher(usuario.getPass());
+
+        if (checkIdUser.find()) {
+            if (checkUser.find()) {
+                if (checkPass.find()) {
+
+                }
+            }
+        }
+
+    }
 
     public boolean checkUser(String idUser, String password) {
         for (int i = 0; i < this.users.size(); i++) {

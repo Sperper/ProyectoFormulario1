@@ -29,6 +29,9 @@ public class PanelLogin extends JPanel {
             } else {
                 System.out.println("Pa tu casa");
             }
+
+            Boolean isAdmin2 = false;
+
         }
 
         @Override
