@@ -1,6 +1,7 @@
 package com.es.proyectoformulario.ui.panels;
 
 import com.es.proyectoformulario.services.impl.ServiceUser;
+import com.es.proyectoformulario.ui.frames.FrameLogin;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -11,14 +12,15 @@ import java.awt.event.MouseListener;
 
 public class PanelAlta extends JPanel {
 
-    JTextField user;
-    JTextField textRepPass;
-    JTextField pass;
-    JButton bEnviar;
+   private JTextField user;
+   private JTextField textRepPass;
+   private JTextField pass;
+   private JButton bEnviar;
+   private FrameLogin framePadre;
 
-    JTextField textIdUser;
+   private JTextField textIdUser;
 
-    ServiceUser serviceUser = new ServiceUser();
+   private ServiceUser serviceUser = new ServiceUser();
 
     MouseListener listenerMouse = new MouseAdapter() {
         @Override

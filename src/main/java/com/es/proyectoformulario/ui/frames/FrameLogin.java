@@ -2,6 +2,7 @@ package com.es.proyectoformulario.ui.frames;
 
 import com.es.proyectoformulario.ui.panels.PanelAlta;
 import com.es.proyectoformulario.ui.panels.PanelLogin;
+import com.es.proyectoformulario.ui.panels.PanelOpciones;
 
 import javax.swing.*;
 
@@ -15,11 +16,14 @@ public class FrameLogin extends JFrame {
         this.setIconImage(image.getImage());
         this.setResizable(false);
 
-        // PanelLogin p = new PanelLogin();
+        // PanelLogin p = new PanelLogin(this);
         // this.add(p);
 
-        PanelAlta pAlta = new PanelAlta();
-        this.add(pAlta);
+        // PanelAlta pAlta = new PanelAlta();
+        // this.add(pAlta);
+
+        PanelOpciones pOpciones = new PanelOpciones(this);
+        this.add(pOpciones);
 
         this.setVisible(true);
     }

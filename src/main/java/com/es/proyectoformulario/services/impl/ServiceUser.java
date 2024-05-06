@@ -24,6 +24,7 @@ public class ServiceUser {
         this.logger = new ServiceLogger();
     }
 
+    /*
     public boolean altaUser(User usuario) {
         // Longitud max de todos los campos 20
         // NO pueden contener el simbolo :
@@ -43,7 +44,7 @@ public class ServiceUser {
         }
 
     }
-
+    */
     public boolean checkUser(String idUser, String password) {
         for (int i = 0; i < this.users.size(); i++) {
             User usuario = this.users.get(i); // usuario es el elemento de la posicion i de users

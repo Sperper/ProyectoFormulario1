@@ -2,6 +2,7 @@ package com.es.proyectoformulario.ui.panels;
 
 
 import com.es.proyectoformulario.services.impl.ServiceUser;
+import com.es.proyectoformulario.ui.frames.FrameLogin;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -14,11 +15,16 @@ import java.awt.event.MouseListener;
  * @author Pablo Macías
  */
 public class PanelLogin extends JPanel {
-    JTextField user;
-    JTextField pass;
-    JButton bEnviar;
+    private JTextField user;
+    private JTextField pass;
+    private JButton bEnviar;
+    private JButton bAlta;
 
-    ServiceUser serviceUser = new ServiceUser();
+
+    // Este es el framePadre del panel
+    private FrameLogin framePadre;
+
+    private ServiceUser serviceUser = new ServiceUser();
 
     MouseListener listenerMouse = new MouseAdapter() {
         @Override
@@ -33,22 +39,21 @@ public class PanelLogin extends JPanel {
             Boolean isAdmin2 = false;
 
         }
+    };
 
-        @Override
-        public void mouseEntered(MouseEvent e) {
-            JButton b = (JButton) e.getSource();
-            b.setBackground(new Color(135, 206, 250)); // Fondo azul claro
-            b.setBorder(new LineBorder(new Color(0, 115, 183), 3)); // Borde azul oscuro
-        }
 
+    private MouseListener listenerMouseAlta = new MouseAdapter() {
         @Override
-        public void mouseExited(MouseEvent e) {
-            JButton b = (JButton) e.getSource();
-            b.setBackground(new Color(102, 153, 204)); // Fondo azul medio
-            b.setBorder(new LineBorder(new Color(135, 206, 250), 3)); // Borde azul claro
+        public void mouseClicked(MouseEvent e) {
+            System.out.println("Alta pulsado");
+            cargarPanelAlta();
         }
     };
-    public PanelLogin() {
+
+    public PanelLogin(FrameLogin framePadre) {
+
+        this.framePadre = framePadre;
+
         this.setBackground(new Color(174, 139, 225));
         this.setLayout(null);
 
@@ -61,7 +66,7 @@ public class PanelLogin extends JPanel {
         user = new JTextField("Introduzca su usuario");
         user.setLocation(new Point(260,135));
         user.setSize(new Dimension(152,32));
-        this.add(user);
+        this.add    (user);
 
         JLabel passwd = new JLabel("Passwd: ");
         passwd.setLocation(new Point(200,200));
@@ -74,10 +79,33 @@ public class PanelLogin extends JPanel {
         this.add(pass);
 
         bEnviar = new JButton("Enviar");
-        bEnviar.setLocation(new Point(220,321));
+        bEnviar.setLocation(new Point(150,321));
         bEnviar.setSize(new Dimension(152,32));
         this.add(bEnviar);
         bEnviar.addMouseListener(listenerMouse);
 
+        bAlta = new JButton("Alta");
+        bAlta.setLocation(new Point(320,321));
+        bAlta.setSize(new Dimension(152,32));
+        bAlta.setBackground(new Color(208,223,232));
+        bAlta.setBorder(new LineBorder(new Color(135, 206, 250),2));
+        bAlta.addMouseListener(listenerMouseAlta);
+        this.add(bAlta);
+
     }
+
+    private void cargarPanelAlta(){
+        // ELIMINAMOS THIS PanelLogin... este... no otro.
+        framePadre.remove(this);
+
+        // AÑADIMOS UN PANELE ALTA AL ¡¡¡FRAME!!!
+        PanelAlta panelAlta = new PanelAlta();
+        framePadre.add(panelAlta);
+
+        // ULTIMO: REPINTAR EL FRAME
+        framePadre.repaint();
+        framePadre.revalidate();
+
+    }
+
 }
