@@ -71,7 +71,15 @@ public class PanelOpciones extends JPanel {
             JButton b = (JButton) e.getSource();
             b.setBackground(new Color(105, 175, 216));
         }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            System.out.println("Consultar pulsado");
+            cargarPanelConsulta();
+        }
     };
+
+
 
     public PanelOpciones(FrameLogin framePadre) {
 
@@ -118,6 +126,19 @@ public class PanelOpciones extends JPanel {
         bConsultar.setBorder(new LineBorder(new Color(135, 206, 250),2));
         bConsultar.addMouseListener(mouseListenerCons);
         this.add(bConsultar);
+    }
+
+    private void cargarPanelConsulta(){
+        // ELIMINAMOS THIS PanelLogin... este... no otro.
+        framePadre.remove(this);
+
+        // AÑADIMOS UN PANEL ALTA AL ¡¡¡FRAME!!!
+        PanelConsulta panelConsulta = new PanelConsulta(framePadre);
+        framePadre.add(panelConsulta);
+
+        // ULTIMO: REPINTAR EL FRAME
+        framePadre.repaint();
+        framePadre.revalidate();
     }
 
 }

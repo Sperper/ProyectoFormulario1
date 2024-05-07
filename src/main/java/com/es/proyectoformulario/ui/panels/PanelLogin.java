@@ -50,6 +50,15 @@ public class PanelLogin extends JPanel {
         }
     };
 
+   private MouseListener listenerMouseOpciones = new MouseAdapter() {
+       @Override
+       public void mouseClicked(MouseEvent e) {
+           System.out.println("Cargando opciones");
+           cargarPanelOpciones();
+       }
+   };
+
+
     public PanelLogin(FrameLogin framePadre) {
 
         this.framePadre = framePadre;
@@ -82,7 +91,7 @@ public class PanelLogin extends JPanel {
         bEnviar.setLocation(new Point(150,321));
         bEnviar.setSize(new Dimension(152,32));
         this.add(bEnviar);
-        bEnviar.addMouseListener(listenerMouse);
+        bEnviar.addMouseListener(listenerMouseOpciones);
 
         bAlta = new JButton("Alta");
         bAlta.setLocation(new Point(320,321));
@@ -98,7 +107,7 @@ public class PanelLogin extends JPanel {
         // ELIMINAMOS THIS PanelLogin... este... no otro.
         framePadre.remove(this);
 
-        // AÑADIMOS UN PANELE ALTA AL ¡¡¡FRAME!!!
+        // AÑADIMOS UN PANEL ALTA AL ¡¡¡FRAME!!!
         PanelAlta panelAlta = new PanelAlta();
         framePadre.add(panelAlta);
 
@@ -106,6 +115,19 @@ public class PanelLogin extends JPanel {
         framePadre.repaint();
         framePadre.revalidate();
 
+    }
+
+    private void cargarPanelOpciones(){
+        // ELIMINAMOS THIS PanelLogin... este... no otro.
+        framePadre.remove(this);
+
+        // AÑADIMOS UN PANEL ALTA AL ¡¡¡FRAME!!!
+        PanelOpciones panelOpciones = new PanelOpciones(framePadre);
+        framePadre.add(panelOpciones);
+
+        // ULTIMO: REPINTAR EL FRAME
+        framePadre.repaint();
+        framePadre.revalidate();
     }
 
 }
