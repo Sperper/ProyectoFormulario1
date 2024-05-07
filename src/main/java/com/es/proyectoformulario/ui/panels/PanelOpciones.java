@@ -29,6 +29,11 @@ public class PanelOpciones extends JPanel {
             JButton b = (JButton) e.getSource();
             b.setBackground(new Color(192, 221, 184));
         }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            cargarPanelAlta();
+        }
     };
 
     MouseListener mouseListenerBaja = new MouseAdapter() {
@@ -129,14 +134,21 @@ public class PanelOpciones extends JPanel {
     }
 
     private void cargarPanelConsulta(){
-        // ELIMINAMOS THIS PanelLogin... este... no otro.
         framePadre.remove(this);
 
-        // AÑADIMOS UN PANEL ALTA AL ¡¡¡FRAME!!!
         PanelConsulta panelConsulta = new PanelConsulta(framePadre);
         framePadre.add(panelConsulta);
 
-        // ULTIMO: REPINTAR EL FRAME
+        framePadre.repaint();
+        framePadre.revalidate();
+    }
+
+    private void cargarPanelAlta(){
+        framePadre.remove(this);
+
+        PanelAlta panelAlta = new PanelAlta();
+        framePadre.add(panelAlta);
+
         framePadre.repaint();
         framePadre.revalidate();
     }

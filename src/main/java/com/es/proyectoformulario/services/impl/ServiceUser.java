@@ -61,6 +61,7 @@ public class ServiceUser {
         return this.users.stream().anyMatch(user -> user.getId().equalsIgnoreCase(idUser));
     }
 
+
     public void leerFicheroUsers() {
         this.users = gestionUser.leerFichero(this.ruta);
     }

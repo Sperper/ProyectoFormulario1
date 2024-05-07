@@ -1,9 +1,15 @@
 package com.es.proyectoformulario.ui.panels;
 
+import com.es.proyectoformulario.model.User;
+import com.es.proyectoformulario.services.impl.ServiceUser;
 import com.es.proyectoformulario.ui.frames.FrameLogin;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 public class PanelConsulta extends JPanel{
 
@@ -14,7 +20,26 @@ public class PanelConsulta extends JPanel{
     private JLabel labelIdUSer;
     private JTextArea textArea;
 
+    private MouseListener listenerMouseConsultar = new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if (serviceUser.userExists(textIdUser.getText())) {
+
+            }
+        }
+    };
+
+    private ServiceUser serviceUser =  new ServiceUser();
+
+    private MouseListener listenerMouseVolverr = new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            cargarPanelOpciones();
+        }
+    };
+
     public PanelConsulta(FrameLogin framePadre){
+
         this.framePadre = framePadre;
 
         this.setBackground(new Color(105, 175, 216));
@@ -41,8 +66,30 @@ public class PanelConsulta extends JPanel{
         this.textArea.setLocation(180,250);
         this.add(textArea);
 
+        bVolver = new JButton("ATRAS");
+        this.bVolver.setSize(new Dimension(100,32));
+        this.bVolver.setLocation(new Point(25,500));
+        this.bConsultar.setBackground(new Color(161, 255, 227));
+        this.bVolver.addMouseListener(listenerMouseVolverr);
+        this.add(bVolver);
+
 
     }
+
+
+    private void cargarPanelOpciones(){
+        // ELIMINAMOS THIS PanelLogin... este... no otro.
+        framePadre.remove(this);
+
+        // AÑADIMOS UN PANEL ALTA AL ¡¡¡FRAME!!!
+        PanelOpciones panelOpciones = new PanelOpciones(framePadre);
+        framePadre.add(panelOpciones);
+
+        // ULTIMO: REPINTAR EL FRAME
+        framePadre.repaint();
+        framePadre.revalidate();
+    }
+
 
 
 
