@@ -61,6 +61,17 @@ public class ServiceUser {
         return this.users.stream().anyMatch(user -> user.getId().equalsIgnoreCase(idUser));
     }
 
+    public String mostrarDatosUser(String idUser){
+        String mostrar = "";
+        for (int i = 0;i<users.size();i++) {
+            if (idUser.equalsIgnoreCase(users.get(i).getId())) {
+                mostrar = "IdUser: "+users.get(i).getId()+"\n"+
+                        "User: "+users.get(i).getName()+"\n"+
+                        "Pass: "+users.get(i).getPass()+"\n";
+            }
+        }
+        return mostrar;
+    }
 
     public void leerFicheroUsers() {
         this.users = gestionUser.leerFichero(this.ruta);

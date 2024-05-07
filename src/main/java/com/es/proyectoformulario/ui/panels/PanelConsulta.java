@@ -19,17 +19,16 @@ public class PanelConsulta extends JPanel{
     private JTextField textIdUser;
     private JLabel labelIdUSer;
     private JTextArea textArea;
+    private ServiceUser serviceUser =  new ServiceUser();
 
     private MouseListener listenerMouseConsultar = new MouseAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
             if (serviceUser.userExists(textIdUser.getText())) {
-
+                textArea.setText(serviceUser.mostrarDatosUser(textIdUser.getText()));
             }
         }
     };
-
-    private ServiceUser serviceUser =  new ServiceUser();
 
     private MouseListener listenerMouseVolverr = new MouseAdapter() {
         @Override
@@ -59,6 +58,7 @@ public class PanelConsulta extends JPanel{
         this.bConsultar.setSize(new Dimension(150,50));
         this.bConsultar.setLocation(232, 165);
         this.bConsultar.setBackground(new Color(161, 255, 227));
+        this.bConsultar.addMouseListener(listenerMouseConsultar);
         this.add(bConsultar);
 
         textArea = new JTextArea();
