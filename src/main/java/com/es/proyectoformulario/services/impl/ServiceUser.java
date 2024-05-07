@@ -67,7 +67,8 @@ public class ServiceUser {
             if (idUser.equalsIgnoreCase(users.get(i).getId())) {
                 mostrar = "IdUser: "+users.get(i).getId()+"\n"+
                         "User: "+users.get(i).getName()+"\n"+
-                        "Pass: "+users.get(i).getPass()+"\n";
+                        "Pass: "+users.get(i).getPass()+"\n"+
+                        "Is Admin: "+users.get(i).isAdmin();
             }
         }
         return mostrar;
